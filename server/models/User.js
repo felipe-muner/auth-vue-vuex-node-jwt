@@ -9,16 +9,28 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
+      Name: {
+        type: DataTypes.STRING,
+      },
+      DateOfBirth: {
+        type: DataTypes.DATE,
+      },
       Email: {
         type: DataTypes.STRING,
         unique: true,
       },
       Password: DataTypes.STRING,
+      Active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: 1,
+      },
     },
     {
+      freezeTableName: true,
+      timestamps: false,
       hooks: {
         beforeCreate: async (user) => {
-          user.setDataValue("password", await bcrypt.hash(user.password, 8));
+          user.setDataValue("Password", await bcrypt.hash(user.Password, 8));
         },
       },
     }
