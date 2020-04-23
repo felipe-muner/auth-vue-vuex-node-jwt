@@ -1,5 +1,5 @@
 require("dotenv").config();
-var createError = require("http-errors");
+
 var express = require("express");
 var cookieParser = require("cookie-parser");
 
@@ -17,7 +17,7 @@ app.use("/authentication", authenticationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  next(404);
 });
 
 // error handler
