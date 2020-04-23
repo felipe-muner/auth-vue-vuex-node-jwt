@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    sou a AuthArea
-    <AuthArea msg="Welcome to Your Vue.js App" />
+    <AuthArea />
   </div>
 </template>
 
@@ -10,7 +9,6 @@
 import AuthArea from "@/components/auth/Authorization.vue";
 
 export default {
-  name: "Home",
   components: {
     AuthArea
   }

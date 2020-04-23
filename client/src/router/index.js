@@ -30,14 +30,26 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  next();
-  // store
-  //   .dispatch("auth/authenticate")
-  //   .then((response) => {
-  //     next();
-  //   })
-  //   .catch((error) => {});
+  const { isUserLoggedIn } = store.state.authArea;
+  if (!isUserLoggedIn && to.path !== "/auth") {
+    router.push({ name: "auth" });
+  }
+  //   //   debugger;
+  //   router.push({ name: "auth" });
+  //   next();
+  // } else {
+  //   debugger;
+  // }
 });
+
+//   if (isUserLoggedIn && from)
+//     store
+//       .dispatch("auth/authenticate")
+//       .then((response) => {
+//         next();
+//       })
+//       .catch((error) => {});
+// });
 
 // router.beforeEach((to, from, next) => {
 //   store.dispatch('auth/authenticate').then(response => {

@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
-    sou a Dashboard
-    <Dashboard msg="Welcome to Your Vue.js App" />
+  <div>
+    <Dashboard />
   </div>
 </template>
 
@@ -10,7 +9,6 @@
 import Dashboard from "@/components/dashboard/Dashboard.vue";
 
 export default {
-  name: "Home",
   components: {
     Dashboard
   }

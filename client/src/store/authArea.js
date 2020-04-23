@@ -4,7 +4,7 @@ export default {
   namespace: true,
   state: {
     isUserLoggedIn: false,
-    user: { nome: "felipe" },
+    user: "",
   },
   getters: {},
   mutations: {
@@ -14,7 +14,7 @@ export default {
   },
   actions: {
     async typeMethod({ commit, state }) {
-      commit("TYPE_MUTATION", true);
+      commit("TYPE_MUTATION", "");
     },
   },
 };
