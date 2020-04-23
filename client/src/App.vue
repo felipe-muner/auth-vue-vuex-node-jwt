@@ -35,17 +35,23 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import AuthArea from "./views/AuthArea";
+import Dashboard from "./views/Dashboard";
+
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
-
   components: {
-    HelloWorld
+    AuthArea,
+    Dashboard
   },
-  methods: {},
-  data: () => ({
-    //
-  })
+  data: () => ({}),
+  methods: {
+    ...mapActions(["typeMethod"])
+  },
+  created() {
+    this.typeMethod();
+  }
 };
 </script>
