@@ -30,12 +30,12 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   console.log(store.state.isUserLoggedIn);
-  store
-    .dispatch("auth/authenticate")
-    .then((response) => {
-      next();
-    })
-    .catch((error) => {});
+  // store
+  //   .dispatch("auth/authenticate")
+  //   .then((response) => {
+  //     next();
+  //   })
+  //   .catch((error) => {});
 });
 
 // router.beforeEach((to, from, next) => {
