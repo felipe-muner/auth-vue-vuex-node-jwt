@@ -1,23 +1,20 @@
-import Api from "@/api/Api";
+// import AuthenticationService from "@/api/AuthenticationService";
 
 export default {
   namespace: true,
   state: {
-    rates: [{}],
+    isUserLoggedIn: false,
+    user: { nome: "felipe" },
   },
-  getters: {
-    getRates(state) {
-      return state.rates;
-    },
-  },
+  getters: {},
   mutations: {
-    SAVE_RATES(state, rates) {
-      state.rates = rates;
+    TYPE_MUTATION(state, payload) {
+      state.isUserLoggedIn = payload;
     },
   },
   actions: {
-    async loadRates({ commit, state }) {
-      commit("SAVE_RATES", (await MyApi.exchangeRate.loadRates()).data);
+    async typeMethod({ commit, state }) {
+      commit("TYPE_MUTATION", true);
     },
   },
 };

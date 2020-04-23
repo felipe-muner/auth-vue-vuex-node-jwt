@@ -12,7 +12,7 @@ import AuthArea from "@/components/auth/Authorization.vue";
 export default {
   name: "Home",
   components: {
-    Dashboard
+    AuthArea
   }
 };
 </script>

@@ -30,7 +30,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(store.state);
   next();
   // store
   //   .dispatch("auth/authenticate")

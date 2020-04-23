@@ -39,6 +39,7 @@ import AuthArea from "./views/AuthArea";
 import Dashboard from "./views/Dashboard";
 
 import { mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -47,11 +48,19 @@ export default {
     Dashboard
   },
   data: () => ({}),
+  computed: {
+    ...mapState({
+      isUserLoggedIn: state => state.authArea.isUserLoggedIn,
+      user: state => state.authArea.user
+    })
+  },
   methods: {
     ...mapActions(["typeMethod"])
   },
   created() {
-    this.typeMethod();
+    setTimeout(() => {
+      this.typeMethod();
+    }, 2000);
   }
 };
 </script>
