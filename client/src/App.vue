@@ -1,19 +1,27 @@
 <template>
   <v-app id="inspire">
-    <Login />
-    <Dashboard />
+    {{isUserLoggedIn}}
+    <Login v-if="!isUserLoggedIn" />
+    <Dashboard v-if="isUserLoggedIn" />
   </v-app>
 </template>
 
 <script>
 import Login from "@/components/Login";
 import Dashboard from "@/components/Dashboard";
+import { mapState } from "vuex";
+
 export default {
   components: {
     Login,
     Dashboard
   },
-  data: () => ({})
+  data: () => ({}),
+  computed: {
+    ...mapState({
+      isUserLoggedIn: state => state.authArea.isUserLoggedIn
+    })
+  }
 };
 </script>
 <style scoped>

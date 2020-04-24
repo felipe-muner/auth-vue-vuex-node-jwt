@@ -5,6 +5,7 @@ export default {
   state: {
     isUserLoggedIn: true,
     user: "",
+    token: "",
   },
   getters: {},
   mutations: {
