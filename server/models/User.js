@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
       hooks: {
         beforeCreate: async (user) => {
-          user.setDataValue("Password", await bcrypt.hash(user.Password, 8));
+          const hashPass = await bcrypt.hash(user.Password, 10);
+          user.Password = hashPass;
         },
       },
     }

@@ -39,13 +39,27 @@ module.exports = {
       const { email, password } = req.body;
       const user = await User.findOne({ where: { email } });
 
+      if (!user) {
+        return res.status(403).send({
+          error: "The login information is incorrect. there is not user",
+        });
+      }
+      const isPasswordValid = await user.comparePassword(password);
+
+      if (!isPasswordValid) {
+        return res
+          .status(403)
+          .send({ error: "The login information is incorrect. Password" });
+      }
+      const userJson = user.toJSON();
       res.send({
-        user: user,
-        msg: "ok",
+        user: userJson,
+        token: jwtSignUser(userJson),
       });
     } catch (error) {
+      console.log(error);
       res.status(500).send({
-        error: error,
+        error: "An error has occured trying to log in.",
       });
     }
   },
