@@ -5,9 +5,11 @@ import authArea from "./authArea";
 
 Vue.use(Vuex);
 
+const modules = {
+  authArea,
+};
+
 export default new Vuex.Store({
   strict: true,
-  modules: {
-    authArea,
-  },
+  modules,
 });

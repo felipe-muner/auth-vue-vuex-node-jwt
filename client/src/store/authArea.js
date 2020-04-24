@@ -1,21 +1,27 @@
-// import AuthenticationService from "@/api/AuthenticationService";
+import AuthenticationService from "@/api/AuthenticationService";
 
-export default {
+const authArea = {
   namespace: true,
   state: {
     isUserLoggedIn: false,
-    user: "",
+    user: {},
     token: "",
+    newUser: {},
   },
   getters: {},
   mutations: {
-    TYPE_MUTATION(state, payload) {
-      state.isUserLoggedIn = payload;
+    REGISTER(state, payload) {
+      console.log("mutation");
+      console.log(payload);
+      state.newUser = payload;
     },
   },
   actions: {
-    async typeMethod({ commit, state }) {
-      commit("TYPE_MUTATION", "");
+    async registerUser({ commit, state }, data) {
+      const user = (await AuthenticationService.register(data)).data;
+      commit("REGISTER", user);
     },
   },
 };
+
+export default authArea;

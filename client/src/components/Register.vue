@@ -57,12 +57,18 @@
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-date-picker v-model="date" no-title @input="menuDate = false"></v-date-picker>
+                  <v-date-picker
+                    v-model="date"
+                    no-title
+                    @input="menuDate = false"
+                  ></v-date-picker>
                 </v-menu>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn :disabled="!valid" color="success" @click="register">Register</v-btn>
+                <v-btn :disabled="!valid" color="success" @click="register"
+                  >Register</v-btn
+                >
               </v-card-actions>
             </v-form>
           </v-card>
@@ -73,9 +79,12 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
+      user: {},
       date: "",
       dateFormatted: "",
       menuDate: false,
@@ -83,32 +92,39 @@ export default {
       name: "",
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       password: "",
-      passwordRules: [v => !!v || "Password is required"],
-      nameRules: [v => !!v || "Name is required"],
-      dateRules: [v => !!v || "Date is required"]
+      passwordRules: [(v) => !!v || "Password is required"],
+      nameRules: [(v) => !!v || "Name is required"],
+      dateRules: [(v) => !!v || "Date is required"],
     };
   },
   watch: {
     date(val) {
       this.dateFormatted = this.formatDate(this.date);
-    }
+    },
   },
   computed: {
+    // ...mapState({
+    //   newUser: state => state.authArea.newUser
+    // }),
     computedDateFormatted() {
       return this.formatDate(this.date);
-    }
+    },
   },
+  created() {},
   methods: {
+    ...mapActions(["registerUser"]),
     register() {
-      if (this.$refs.form.validate()) {
-        alert("validei");
-      } else {
-        alert("nao validei");
-      }
+      const newUser = {
+        Email: this.email,
+        Password: this.password,
+        DateOfBirth: this.date,
+        Name: this.name,
+      };
+      this.registerUser(newUser);
     },
     formatDate(date) {
       if (!date) return null;
@@ -121,10 +137,9 @@ export default {
 
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
