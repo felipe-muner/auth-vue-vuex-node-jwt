@@ -10,6 +10,15 @@ function jwtSignUser(user) {
 }
 
 module.exports = {
+  async getAll(req, res) {
+    try {
+      const users = await User.findAll();
+      res.send(users);
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({ error: error });
+    }
+  },
   async register(req, res) {
     try {
       const user = await User.create(req.body);
@@ -27,11 +36,15 @@ module.exports = {
   },
   async login(req, res) {
     try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ where: { email } });
+
       res.send({
-        user: "login-criado",
+        user: user,
+        msg: "ok",
       });
     } catch (error) {
-      res.status(400).send({
+      res.status(500).send({
         error: error,
       });
     }

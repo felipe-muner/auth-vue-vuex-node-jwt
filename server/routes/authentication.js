@@ -7,7 +7,9 @@ router.get("/", function (req, res, next) {
   res.json({ route: "authentication" });
 });
 
-router.get("/register", AuthenticationController.register);
-router.get("/login", AuthenticationController.login);
+router.get("/users", AuthenticationController.getAll);
+
+router.post("/register", AuthenticationController.register);
+router.post("/login", AuthenticationController.login);
 
 module.exports = router;
