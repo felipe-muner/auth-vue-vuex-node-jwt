@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-row style="margin-top:150px;">
-      <v-col xs6>
+    <v-row style="margin-top:50px;">
+      <v-col cols="6">
         <Login />
       </v-col>
-      <v-col xs6>
+      <v-col cols="6">
         <Register />
       </v-col>
     </v-row>

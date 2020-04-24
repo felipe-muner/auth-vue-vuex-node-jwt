@@ -1,8 +1,9 @@
 <template>
-  <v-content>
-    <v-container class="fill-height" fluid>
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="8">
+  <v-content class="mr-3">
+    <v-container>
+      <v-row>
+        <v-spacer></v-spacer>
+        <v-col cols="8">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
               <v-toolbar-title>Login form</v-toolbar-title>
@@ -11,6 +12,7 @@
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-card-text>
                 <v-text-field
+                  outlined
                   :rules="emailRules"
                   label="E-mail"
                   v-model="email"
@@ -19,6 +21,7 @@
                 />
 
                 <v-text-field
+                  outlined
                   :rules="passwordRules"
                   label="Password"
                   v-model="password"
