@@ -47,6 +47,7 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       outlined
+                      :rules="dateRules"
                       v-model="computedDateFormatted"
                       label="Date of Birth"
                       hint="DD/MM/YYYY format"
@@ -87,7 +88,8 @@ export default {
       ],
       password: "",
       passwordRules: [v => !!v || "Password is required"],
-      nameRules: [v => !!v || "Name is required"]
+      nameRules: [v => !!v || "Name is required"],
+      dateRules: [v => !!v || "Date is required"]
     };
   },
   watch: {
