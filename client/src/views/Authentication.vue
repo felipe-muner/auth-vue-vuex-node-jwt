@@ -1,7 +1,13 @@
 <template>
   <div>
-    <Login />
-    <Register />
+    <v-row style="margin-top:150px;">
+      <v-col xs6>
+        <Login />
+      </v-col>
+      <v-col xs6>
+        <Register />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
