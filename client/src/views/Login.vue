@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <AuthArea />
+    <Login />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import AuthArea from "@/components/auth/Authorization.vue";
+import Login from "@/components/Login.vue";
 
 export default {
   components: {
-    AuthArea
+    Login
   }
 };
 </script>
