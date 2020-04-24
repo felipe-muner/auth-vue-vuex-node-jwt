@@ -3,7 +3,7 @@
 export default {
   namespace: true,
   state: {
-    isUserLoggedIn: true,
+    isUserLoggedIn: false,
     user: "",
     token: "",
   },
