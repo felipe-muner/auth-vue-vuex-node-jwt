@@ -44,13 +44,11 @@ module.exports = {
           error: "The login information is incorrect. there is not user",
         });
       }
-      const isPasswordValid = await user.comparePassword(password);
 
-      if (!isPasswordValid) {
-        return res
-          .status(403)
-          .send({ error: "The login information is incorrect. Password" });
-      }
+      const isPasswordValid = await user.comparePassword(password);
+      if (!isPasswordValid)
+        return res.status(401).send({ auth: false, token: null });
+
       const userJson = user.toJSON();
       res.send({
         user: userJson,
