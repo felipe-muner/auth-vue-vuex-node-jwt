@@ -34,6 +34,7 @@ module.exports = {
       });
     }
   },
+
   async login(req, res) {
     try {
       const { email, password } = req.body;
@@ -51,6 +52,7 @@ module.exports = {
 
       const userJson = user.toJSON();
       res.send({
+        auth: true,
         user: userJson,
         token: jwtSignUser(userJson),
       });
