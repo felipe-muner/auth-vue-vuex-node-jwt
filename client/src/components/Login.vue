@@ -16,7 +16,7 @@
                   :rules="emailRules"
                   label="E-mail"
                   v-model="email"
-                  prepend-icon="person"
+                  prepend-icon="email"
                   type="text"
                 />
 
@@ -30,8 +30,11 @@
                 />
               </v-card-text>
               <v-card-actions>
+                <RecoverPassword />
                 <v-spacer />
-                <v-btn :disabled="!valid" color="primary" @click="login">Login</v-btn>
+                <v-btn :disabled="!valid" color="primary" @click="login"
+                  >Login</v-btn
+                >
               </v-card-actions>
             </v-form>
           </v-card>
@@ -42,17 +45,21 @@
 </template>
 
 <script>
+import RecoverPassword from "./RecoverPassword";
 export default {
+  components: {
+    RecoverPassword,
+  },
   data() {
     return {
       valid: true,
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       password: "",
-      passwordRules: [v => !!v || "Password is required"]
+      passwordRules: [(v) => !!v || "Password is required"],
     };
   },
   watch: {},
@@ -60,10 +67,9 @@ export default {
     login() {
       if (this.$refs.form.validate()) {
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

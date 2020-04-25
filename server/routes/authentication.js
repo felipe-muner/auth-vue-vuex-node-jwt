@@ -10,6 +10,7 @@ router.get("/", function (req, res, next) {
 router.get("/users", AuthenticationController.getAll);
 
 router.post("/register", AuthenticationController.register);
+router.post("/recover-password", AuthenticationController.recoverPassword);
 router.post("/login", AuthenticationController.login);
 
 module.exports = router;

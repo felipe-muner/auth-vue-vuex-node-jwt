@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    {{isUserLoggedIn}}
+    {{ isUserLoggedIn }}
     <Authentication v-if="!isUserLoggedIn" />
     <Dashboard v-if="isUserLoggedIn" />
   </v-app>
@@ -14,14 +14,14 @@ import { mapState } from "vuex";
 export default {
   components: {
     Authentication,
-    Dashboard
+    Dashboard,
   },
   data: () => ({}),
   computed: {
     ...mapState({
-      isUserLoggedIn: state => state.authArea.isUserLoggedIn
-    })
-  }
+      isUserLoggedIn: (state) => state.authArea.isUserLoggedIn,
+    }),
+  },
 };
 </script>
 <style scoped>
@@ -35,5 +35,5 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
-}
-</style>>
+}</style
+>>

@@ -10,6 +10,15 @@ function jwtSignUser(user) {
 }
 
 module.exports = {
+  async recoverPassword(req, res) {
+    try {
+      console.log("recoverPassword");
+      res.send({ recoverPassword: "recoverPassword" });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  },
+
   async getAll(req, res) {
     try {
       const users = await User.findAll();
