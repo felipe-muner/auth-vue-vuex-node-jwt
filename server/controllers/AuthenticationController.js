@@ -21,18 +21,20 @@ module.exports = {
   },
   async register(req, res) {
     try {
-      console.log(req.body);
-      const user = await User.create(req.body);
+      console.log("register2");
+      const [user, created] = await User.findOrCreate({
+        where: { Email: req.body.Email },
+        defaults: req.body,
+      });
+      console.log(user);
       const userJson = user.toJSON();
       res.send({
         user: userJson,
         token: jwtSignUser(userJson),
+        created,
       });
     } catch (error) {
-      console.log(error);
-      res.status(400).send({
-        error: error,
-      });
+      res.status(400).send({ error });
     }
   },
 
