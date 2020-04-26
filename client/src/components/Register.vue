@@ -118,13 +118,15 @@ export default {
   methods: {
     ...mapActions(["registerUser"]),
     register() {
-      const newUser = {
-        Email: this.email,
-        Password: this.password,
-        DateOfBirth: this.date,
-        Name: this.name,
-      };
-      this.registerUser(newUser);
+      if (this.$refs.form.validate()) {
+        const newUser = {
+          Email: this.email,
+          Password: this.password,
+          DateOfBirth: this.date,
+          Name: this.name,
+        };
+        this.registerUser(newUser);
+      }
     },
     formatDate(date) {
       if (!date) return null;
