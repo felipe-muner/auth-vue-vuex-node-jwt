@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const EmailController = require("./EmailController");
 
 function jwtSignUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7;
@@ -12,9 +13,25 @@ function jwtSignUser(user) {
 module.exports = {
   async recoverPassword(req, res) {
     try {
-      console.log("recoverPassword");
-      res.send({ recoverPassword: "recoverPassword" });
+      const isUser = await User.findOne({ where: { Email: req.body.Email } });
+      if (isUser) {
+        console.log(isUser);
+        // send e-mail
+        EmailController.recoverPassword(req.body.Email);
+        res.send({
+          isUser: isUser,
+          msg: "We sent an e-mail to you. Check it there.",
+        });
+      } else {
+        console.log(isUser);
+        //redireciona e exibe msg
+        res.status(400).send({
+          isUser: isUser,
+          msg: "E-mail not found.",
+        });
+      }
     } catch (error) {
+      console.log(error);
       res.status(500).send(error);
     }
   },

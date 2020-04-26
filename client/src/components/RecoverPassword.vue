@@ -55,7 +55,7 @@ export default {
   methods: {
     ...mapActions(["recoverPassword"]),
     submit() {
-      this.recoverPassword();
+      this.recoverPassword({ Email: this.email });
     },
   },
 };
